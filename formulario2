@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <title>Formulario Salesforce</title>
+    <script>
+        // Función para obtener parámetros UTM de la URL
+        function getUTMParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || ''; // Si no existe, devuelve una cadena vacía
+        }
+
+        // Función para asignar valores UTM a los campos ocultos
+        function populateUTMFields() {
+            document.getElementById('utm_source').value = getUTMParameter('utm_source');
+            document.getElementById('utm_medium').value = getUTMParameter('utm_medium');
+            document.getElementById('utm_campaign').value = getUTMParameter('utm_campaign');
+            document.getElementById('utm_term').value = getUTMParameter('utm_term');
+            document.getElementById('utm_content').value = getUTMParameter('utm_content');
+        }
+
+        // Esperamos a que la página cargue completamente antes de ejecutar el script
+        window.onload = populateUTMFields;
+    </script>
+</head>
+<body>
+    <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00DO1000009wKUJ" method="POST">
+
+        <input type="hidden" name="oid" value="00DO1000009wKUJ">
+        <input type="hidden" name="retURL" value="https://www.google.com/?hl=es">
+
+        <label for="first_name">First Name</label>
+        <input id="first_name" maxlength="40" name="first_name" size="20" type="text"><br>
+
+        <label for="last_name">Last Name</label>
+        <input id="last_name" maxlength="80" name="last_name" size="20" type="text"><br>
+
+        <label for="email">Email</label>
+        <input id="email" maxlength="80" name="email" size="20" type="text"><br>
+
+        <label for="company">Company</label>
+        <input id="company" maxlength="40" name="company" size="20" type="text"><br>
+
+        <label for="city">City</label>
+        <input id="city" maxlength="40" name="city" size="20" type="text"><br>
+
+        <label for="state">State/Province</label>
+        <input id="state" maxlength="20" name="state" size="20" type="text"><br>
+
+        <!-- Campos UTM ocultos -->
+        <input id="utm_source" name="00NO100000CqtpV" type="hidden">
+        <input id="utm_medium" name="00NO100000Cqtsj" type="hidden">
+        <input id="utm_campaign" name="00NO100000CqoVA" type="hidden">
+        <input id="utm_term" name="00NO100000CqSCG" type="hidden">
+        <input id="utm_content" name="00NO100000CqtuL" type="hidden">
+
+        <input type="submit" name="submit">
+    </form>
+</body>
+</html>
